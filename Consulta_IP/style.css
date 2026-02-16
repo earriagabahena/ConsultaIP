@@ -1,0 +1,525 @@
+/* ─── Variables de color ─────────────────────── */
+:root {
+  --cream:        #fdf6ec;
+  --cream-border: #d1b4e0;
+  --brown:        #63408b;
+  --brown-dark:   #3c225c;
+  --text:         #251f3d;
+  --text-soft:    #5e447a;
+  --white:        #ffffff;
+  --danger:       #c0392b;
+}
+
+/* ─── Reset ──────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--cream);
+  color: var(--text);
+}
+
+/* ─── Header ─────────────────────────────────── */
+header {
+  background: var(--white);
+  border-bottom: 1px solid var(--cream-border);
+  padding: 18px 24px;
+}
+
+header h1 {
+  font-size: 22px;
+  color: var(--brown-dark);
+}
+
+header p {
+  font-size: 13px;
+  color: var(--text-soft);
+  margin-top: 2px;
+}
+
+/* ─── Main ───────────────────────────────────── */
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ─── Secciones (tarjetas) ───────────────────── */
+section {
+  background: var(--white);
+  border: 1px solid var(--cream-border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+section h2 {
+  font-size: 15px;
+  color: var(--brown-dark);
+  margin-bottom: 14px;
+}
+
+/* ─── Búsqueda ───────────────────────────────── */
+.search-box {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--cream-border);
+  border-radius: 6px;
+  background: var(--cream);
+  font-size: 14px;
+  outline: none;
+}
+
+.search-box input:focus {
+  border-color: var(--brown);
+}
+
+.search-box button {
+  padding: 10px 22px;
+  background: var(--brown);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background: var(--brown-dark);
+}
+
+.error-msg {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--danger);
+  min-height: 18px;
+}
+
+/* ─── Tabla ──────────────────────────────────── */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.table-header h2 { margin-bottom: 0; }
+
+.filter-input {
+  padding: 8px 12px;
+  border: 1px solid var(--cream-border);
+  border-radius: 6px;
+  background: var(--cream);
+  font-size: 13px;
+  outline: none;
+  width: 200px;
+}
+
+.filter-input:focus {
+  border-color: var(--brown);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+  font-size: 13px;
+}
+
+thead {
+  background: var(--cream);
+  border-bottom: 1px solid var(--cream-border);
+}
+
+th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--cream);
+}
+
+tbody tr:hover {
+  background: var(--cream);
+}
+
+.btn-select {
+  padding: 4px 10px;
+  background: #f8eafd;
+  color: var(--danger);
+  border: 1px solid #ecc0f5;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-select:hover {
+  background: #ecd0fa;
+}
+
+.btn-delete {
+  padding: 4px 10px;
+  background: #f7eafd;
+  color: var(--danger);
+  border: 1px solid #edc0f5;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: #fad4d0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 36px;
+  color: var(--text-soft);
+  font-size: 14px;
+}
+
+/* ─── Mapa ───────────────────────────────────── */
+#map {
+  width: 100%;
+  height: 340px;
+  border-radius: 6px;
+  border: 1px solid var(--cream-border);
+}
+
+/* ─── Popup ──────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.popup {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 28px 24px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+
+.popup h3 {
+  font-size: 17px;
+  color: var(--brown-dark);
+  margin-bottom: 10px;
+}
+
+.popup p {
+  font-size: 14px;
+  color: var(--text-soft);
+  margin-bottom: 20px;
+}
+
+.popup strong {
+  color: var(--brown-dark);
+}
+
+.popup button {
+  padding: 9px 24px;
+  background: var(--brown);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  background: var(--brown-dark);
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVO - Media Queries
+   ═══════════════════════════════════════════════ */
+
+/* Wrapper para scroll horizontal de tabla */
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 15px;
+}
+
+/* Tablets y pantallas medianas (768px - 1024px) */
+@media (max-width: 1024px) {
+  body {
+    padding: 15px;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .search-section h2,
+  .history-section h2,
+  .map-section h2 {
+    font-size: 20px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 10px 8px;
+  }
+
+  .btn-select,
+  .btn-delete {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+
+  #map {
+    height: 350px;
+  }
+}
+
+/* Tablets pequeñas (max 768px) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 24px;
+    padding: 15px;
+  }
+
+  .search-section,
+  .history-section,
+  .map-section {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .search-section h2,
+  .history-section h2,
+  .map-section h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  /* Input de búsqueda más grande en móvil */
+  #ipInput {
+    font-size: 16px; /* Evita zoom automático en iOS */
+    padding: 12px;
+  }
+
+  #lookupBtn {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+
+  #filterInput {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Tabla con scroll horizontal */
+  table {
+    min-width: 900px; /* Asegura que tenga ancho mínimo */
+    font-size: 13px;
+  }
+
+  th, td {
+    padding: 8px 6px;
+    white-space: nowrap; /* Evita que el texto se parta */
+  }
+
+  .btn-select,
+  .btn-delete {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  /* Mapa más pequeño */
+  #map {
+    height: 300px;
+  }
+
+  /* Popup más pequeño */
+  .popup {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+  }
+
+  .popup h3 {
+    font-size: 18px;
+  }
+
+  .popup p {
+    font-size: 14px;
+  }
+}
+
+/* Móviles (max 480px) */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+    padding: 12px;
+  }
+
+  .search-section,
+  .history-section,
+  .map-section {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .search-section h2,
+  .history-section h2,
+  .map-section h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  #ipInput {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  #lookupBtn {
+    padding: 10px 20px;
+    font-size: 15px;
+    width: 100%; /* Botón a ancho completo en móvil */
+    margin-top: 10px;
+  }
+
+  #filterInput {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .error-message {
+    font-size: 13px;
+  }
+
+  /* Tabla más compacta */
+  table {
+    min-width: 850px;
+    font-size: 11px;
+  }
+
+  th, td {
+    padding: 6px 4px;
+  }
+
+  .btn-select,
+  .btn-delete {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
+  /* Mapa más pequeño en móviles */
+  #map {
+    height: 250px;
+  }
+
+  /* Empty state más pequeño */
+  #emptyState {
+    font-size: 14px;
+    padding: 30px 15px;
+  }
+
+  /* Popup más compacto */
+  .popup {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .popup h3 {
+    font-size: 16px;
+  }
+
+  .popup p {
+    font-size: 13px;
+  }
+
+  #closePopupBtn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+/* Móviles muy pequeños (max 360px) */
+@media (max-width: 360px) {
+  h1 {
+    font-size: 18px;
+  }
+
+  table {
+    font-size: 10px;
+  }
+
+  .btn-select,
+  .btn-delete {
+    padding: 2px 4px;
+    font-size: 10px;
+  }
+
+  #map {
+    height: 200px;
+  }
+}
+
+/* Landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+  #map {
+    height: 200px;
+  }
+
+  .search-section,
+  .history-section,
+  .map-section {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+}

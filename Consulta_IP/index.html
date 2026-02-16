@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IPScope — Consulta de IPs</title>
+  
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Leaflet.js para el mapa interactivo -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       ENCABEZADO
+       ══════════════════════════════════════════ -->
+  <header>
+    <div class="header-inner">
+      <h1>IPScope</h1>
+      <p class="tagline">Plataforma de consulta de direcciones IP</p>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       CONTENIDO PRINCIPAL
+       ══════════════════════════════════════════ -->
+  <main>
+    
+    <!-- Sección: Búsqueda de IP -->
+    <section class="section-search">
+      <h2>Consultar una IP</h2>
+      
+      <!-- Formulario de búsqueda -->
+      <div class="search-box">
+        <input
+          type="text"
+          id="ipInput"
+          placeholder="Ej: 8.8.8.8"
+          autocomplete="off"
+        />
+        <button id="lookupBtn">Consultar</button>
+      </div>
+      
+      <!-- Mensaje de error (oculto por defecto) -->
+      <p class="error-msg" id="errorMsg"></p>
+    </section>
+
+    <!-- Sección: Tabla de historial -->
+    <section class="section-table">
+      <div class="table-header">
+        <h2>Historial de consultas</h2>
+        
+        <!-- Input para filtrar registros en tiempo real -->
+        <input
+          type="text"
+          id="filterInput"
+          placeholder="Filtrar registros..."
+          class="filter-input"
+        />
+      </div>
+
+      <!-- Contenedor de la tabla con scroll horizontal -->
+      <div class="table-wrapper">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th>Acción</th>
+              <th>IP</th>
+              <th>País</th>
+              <th>Ciudad</th>
+              <th>ISP</th>
+              <th>Zona Horaria</th>
+              <th>Latitud</th>
+              <th>Longitud</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          
+          <!-- Cuerpo de la tabla (se llena dinámicamente con JS) -->
+          <tbody id="tableBody">
+          </tbody>
+        </table>
+
+        <!-- Mensaje cuando no hay registros -->
+        <div class="empty-state" id="emptyState">
+          Aún no hay registros. ¡Ingresa una IP para comenzar!
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección: Mapa interactivo -->
+    <section class="section-map">
+      <h2>Ubicación en el mapa</h2>
+      
+      <!-- Contenedor del mapa de Leaflet.js -->
+      <div id="map"></div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       POPUP DE IP DUPLICADA
+       ══════════════════════════════════════════ -->
+  <!-- Se muestra cuando se intenta consultar una IP que ya existe -->
+  <div class="overlay" id="dupOverlay">
+    <div class="popup">
+      <h3>⚠️ IP ya registrada</h3>
+      <p>
+        La dirección IP <strong id="dupIPText"></strong> ya existe en el historial.
+      </p>
+      <button id="closePopupBtn">Entendido</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════════════ -->
+  <!-- Leaflet.js - Librería de mapas -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- Script principal de la aplicación -->
+  <script src="app.js"></script>
+
+</body>
+</html>
