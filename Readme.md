@@ -2,13 +2,13 @@
 
 Aplicación web para consultar información detallada de direcciones IP con historial persistente y visualización en mapa interactivo.
 
-![IPScope Preview](https://via.placeholder.com/800x400/8b7355/ffffff?text=IPScope+Preview)
+![IPScope Preview](https://placehold.co/800x400/8b7355/ffffff?text=IPScope+Preview)
 
 ---
 
 ## Proyecto en vivo
 
-**[Ver proyecto desplegado](https://tu-usuario.github.io/ipscope/)**
+**[Ver proyecto desplegado](https://earriagabahena.github.io/ConsultaIP/)**
 
 ---
 
